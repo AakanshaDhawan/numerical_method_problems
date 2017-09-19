@@ -6,4 +6,5 @@ Problems like :
 3) Newton Ramphson Method
 4) Secant Method
 5) Regular false
+6) Jacobi Method
   
