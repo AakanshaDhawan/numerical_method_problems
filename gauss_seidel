@@ -1,52 +1,45 @@
 #include<iostream>
-#include<conio.h>
- 
+#include<cmath>
+
 using namespace std;
- 
-int main(void)
-{
-    float a[10][10], b[10], x[10], y[10];
-    int n = 0, m = 0, i = 0, j = 0;
-    cout << "Enter size of 2d array(Square matrix) : ";
-    cin >> n;
-    for (i = 0; i < n; i++)
-    {
-        for (j = 0; j < n; j++)
-        {
-            cout << "Enter values no :(" << i << ", " << j << ") ";
-            cin >> a[i][j];
+
+int main() {
+    int i,j,m,n,l;
+    float x[10],a[10][10],b[10],c;
+    cout<<"\nEnter the value of n : \n";
+    cin>>n;
+    cout<<"\nEnter the number of iterations : \n";
+    cin>>l;
+    cout<<"\nEnter the right hand side constants : \n";
+    for(i=0;i<n;i++) {
+        cin>>b[i];
+    }
+    cout<<"\nEnter the coefficients row wise : \n";
+    for(i=0;i<n;i++) {
+        x[i]=0;
+        for(j=0;j<n;j++) {
+            cin>>a[i][j];
         }
     }
-    cout << "\nEnter Values to the right side of equation\n";
-    for (i = 0; i < n; i++)
-    {
-        cout << "Enter values no :(" << i << ", " << j << ") ";
-        cin >> b[i];
-    }
-    cout << "Enter initial values of x\n";
-    for (i = 0; i < n; i++)
-    {
-        cout << "Enter values no. :(" << i<<"):";
-        cin >> x[i];
-    }
-    cout << "\nEnter the no. of iteration : ";
-    cin >> m;
-    while (m > 0)
-    {
-        for (i = 0; i < n; i++)
-        {
-            y[i] = (b[i] / a[i][i]);
-            for (j = 0; j < n; j++)
-            {
-                if (j == i)
-                    continue;
-                y[i] = y[i] - ((a[i][j] / a[i][i]) * x[j]);
-                x[i] = y[i];
+    m=1;
+    line:
+    for(i=0;i<n;i++) {
+        c=b[i];
+        for(j=0;j<n;j++) {
+            if(i!=j) {
+                c=c-a[i][j]*x[j];
             }
-            cout<<"x["<<i+1<<"]="<<y[i];
         }
-        cout << "\n";
-        n--;
+        x[i]=c/a[i][i];
     }
-    return 0;
+    m++;
+    if(m<=l) {
+        goto line;
+    }
+    else {
+        cout<<"\nThe Solution is : \n";
+        for(i=0;i<n;i++) {
+            cout<<"\nx("<<i<<") = "<<x[i]<<"\n";
+        }
+    }
 }
